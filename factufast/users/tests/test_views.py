@@ -11,11 +11,7 @@ from django.urls import reverse
 from factufast.users.forms import UserAdminChangeForm
 from factufast.users.models import User
 from factufast.users.tests.factories import UserFactory
-from factufast.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from factufast.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 
