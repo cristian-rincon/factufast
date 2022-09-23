@@ -37,9 +37,9 @@ class UserAdmin(auth_admin.UserAdmin):
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ["client_name", "client_address", "city", "phone_number", "email"]
+    list_display = ["name", "address", "city", "phone_number", "email"]
     list_filter = ["city"]
-    search_fields = ["client_name", "city", "phone_number", "email"]
+    search_fields = ["name", "city", "phone_number", "email"]
     list_per_page = 25
 
     

@@ -39,21 +39,29 @@ class Client(models.Model):
         ("Cali", "Cali"),
     )
 
-    client_name = models.CharField(max_length=200, null=True, blank=True)
-    client_address = models.CharField(max_length=200, null=True, blank=True)
+    # Client info
+    name = models.CharField(max_length=200, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    logo = models.ImageField(default="default_logo.png", upload_to="client_logos")
+    postal_code = models.CharField(max_length=10, null=True, blank=True)
+    city = models.CharField(choices=COLOMBIA_CITIES, max_length=100, null=True, blank=True)
+    phone_number = models.CharField(max_length=200, null=True, blank=True)
+    email = models.EmailField(max_length=200, null=True, blank=True)
+    tax_number = models.CharField(max_length=200, null=True, blank=True)
+
+    # Utility fields
     unique_id = models.UUIDField(
         default=uuid4, editable=False, unique=True, blank=True, null=True
     )
-    postal_code = models.CharField(max_length=10, null=True, blank=True)
-    city = models.CharField(choices=COLOMBIA_CITIES, max_length=100, null=True, blank=True)
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
-    phone_number = models.CharField(max_length=200, null=True, blank=True)
-    email = models.EmailField(max_length=200, null=True, blank=True)
     date_created = models.DateTimeField(default=timezone.now, blank=True, null=True)
     date_updated = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
+
+
+
     def __str__(self):
-        return f"{self.client_name}, {self.city}, {self.unique_id}"
+        return f"{self.name}, {self.city}, {self.unique_id}"
 
     def get_absolute_url(self):
         return reverse("client-detail", kwargs={"slug": self.slug})
@@ -63,8 +71,8 @@ class Client(models.Model):
             self.date_created = timezone.localtime(timezone.now())
         if self.unique_id is None:
             self.unique_id = str(uuid4()).split("-")[4]
-            self.slug = slugify(f"{self.client_name}-{self.unique_id}-{self.city}")
+            self.slug = slugify(f"{self.name}-{self.unique_id}-{self.city}")
 
-        self.slug = slugify(f"{self.client_name}-{self.unique_id}-{self.city}")
+        self.slug = slugify(f"{self.name}-{self.unique_id}-{self.city}")
         self.date_updated = timezone.localtime(timezone.now())
         super(Client, self).save(*args, **kwargs)
