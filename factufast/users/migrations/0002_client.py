@@ -8,24 +8,77 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Client',
+            name="Client",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('client_name', models.CharField(blank=True, max_length=200, null=True)),
-                ('client_address', models.CharField(blank=True, max_length=200, null=True)),
-                ('unique_id', models.UUIDField(blank=True, default=uuid.uuid4, editable=False, null=True, unique=True)),
-                ('postal_code', models.CharField(blank=True, max_length=10, null=True)),
-                ('city', models.CharField(blank=True, choices=[('Bogota', 'Bogota'), ('Antioquia', 'Medellin'), ('Valle del Cauca', 'Cali')], max_length=100, null=True)),
-                ('slug', models.SlugField(blank=True, max_length=500, null=True, unique=True)),
-                ('phone_number', models.CharField(blank=True, max_length=200, null=True)),
-                ('email', models.EmailField(blank=True, max_length=200, null=True)),
-                ('date_created', models.DateTimeField(blank=True, default=django.utils.timezone.now, null=True)),
-                ('date_updated', models.DateTimeField(blank=True, default=django.utils.timezone.now, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "client_name",
+                    models.CharField(blank=True, max_length=200, null=True),
+                ),
+                (
+                    "client_address",
+                    models.CharField(blank=True, max_length=200, null=True),
+                ),
+                (
+                    "unique_id",
+                    models.UUIDField(
+                        blank=True,
+                        default=uuid.uuid4,
+                        editable=False,
+                        null=True,
+                        unique=True,
+                    ),
+                ),
+                ("postal_code", models.CharField(blank=True, max_length=10, null=True)),
+                (
+                    "city",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Bogota", "Bogota"),
+                            ("Antioquia", "Medellin"),
+                            ("Valle del Cauca", "Cali"),
+                        ],
+                        max_length=100,
+                        null=True,
+                    ),
+                ),
+                (
+                    "slug",
+                    models.SlugField(
+                        blank=True, max_length=500, null=True, unique=True
+                    ),
+                ),
+                (
+                    "phone_number",
+                    models.CharField(blank=True, max_length=200, null=True),
+                ),
+                ("email", models.EmailField(blank=True, max_length=200, null=True)),
+                (
+                    "date_created",
+                    models.DateTimeField(
+                        blank=True, default=django.utils.timezone.now, null=True
+                    ),
+                ),
+                (
+                    "date_updated",
+                    models.DateTimeField(
+                        blank=True, default=django.utils.timezone.now, null=True
+                    ),
+                ),
             ],
         ),
     ]

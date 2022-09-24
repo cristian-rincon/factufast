@@ -8,65 +8,77 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('invoices', '0001_initial'),
+        ("invoices", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='product',
-            name='digital',
+            model_name="product",
+            name="digital",
         ),
         migrations.RemoveField(
-            model_name='product',
-            name='image',
+            model_name="product",
+            name="image",
         ),
         migrations.RemoveField(
-            model_name='product',
-            name='name',
+            model_name="product",
+            name="name",
         ),
         migrations.AddField(
-            model_name='product',
-            name='currency',
-            field=models.CharField(blank=True, choices=[('COP', 'COP'), ('USD', 'USD')], default='COP', max_length=3, null=True),
+            model_name="product",
+            name="currency",
+            field=models.CharField(
+                blank=True,
+                choices=[("COP", "COP"), ("USD", "USD")],
+                default="COP",
+                max_length=3,
+                null=True,
+            ),
         ),
         migrations.AddField(
-            model_name='product',
-            name='date_created',
-            field=models.DateTimeField(blank=True, default=django.utils.timezone.now, null=True),
+            model_name="product",
+            name="date_created",
+            field=models.DateTimeField(
+                blank=True, default=django.utils.timezone.now, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='product',
-            name='date_updated',
-            field=models.DateTimeField(blank=True, default=django.utils.timezone.now, null=True),
+            model_name="product",
+            name="date_updated",
+            field=models.DateTimeField(
+                blank=True, default=django.utils.timezone.now, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='product',
-            name='description',
+            model_name="product",
+            name="description",
             field=models.TextField(blank=True, max_length=200, null=True),
         ),
         migrations.AddField(
-            model_name='product',
-            name='quantity',
+            model_name="product",
+            name="quantity",
             field=models.FloatField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='product',
-            name='slug',
+            model_name="product",
+            name="slug",
             field=models.SlugField(blank=True, max_length=500, null=True, unique=True),
         ),
         migrations.AddField(
-            model_name='product',
-            name='title',
+            model_name="product",
+            name="title",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='product',
-            name='unique_id',
-            field=models.UUIDField(blank=True, default=uuid.uuid4, editable=False, null=True, unique=True),
+            model_name="product",
+            name="unique_id",
+            field=models.UUIDField(
+                blank=True, default=uuid.uuid4, editable=False, null=True, unique=True
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='price',
+            model_name="product",
+            name="price",
             field=models.FloatField(blank=True, null=True),
         ),
     ]

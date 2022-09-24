@@ -6,23 +6,35 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_client'),
+        ("users", "0002_client"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='client',
-            name='client_logo',
-            field=models.ImageField(default='default_logo.png', upload_to='client_logos'),
+            model_name="client",
+            name="client_logo",
+            field=models.ImageField(
+                default="default_logo.png", upload_to="client_logos"
+            ),
         ),
         migrations.AddField(
-            model_name='client',
-            name='tax_number',
+            model_name="client",
+            name="tax_number",
             field=models.CharField(blank=True, max_length=200, null=True),
         ),
         migrations.AlterField(
-            model_name='client',
-            name='city',
-            field=models.CharField(blank=True, choices=[('Bogota', 'Bogota'), ('Madrid', 'Madrid'), ('Medellin', 'Medellin'), ('Cali', 'Cali')], max_length=100, null=True),
+            model_name="client",
+            name="city",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("Bogota", "Bogota"),
+                    ("Madrid", "Madrid"),
+                    ("Medellin", "Medellin"),
+                    ("Cali", "Cali"),
+                ],
+                max_length=100,
+                null=True,
+            ),
         ),
     ]

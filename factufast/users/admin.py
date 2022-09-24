@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 from factufast.users.forms import UserAdminChangeForm, UserAdminCreationForm
-from factufast.users.models import Client
+from factufast.users.models import Client, Setting
 
 User = get_user_model()
 
@@ -42,4 +42,10 @@ class ClientAdmin(admin.ModelAdmin):
     search_fields = ["name", "city", "phone_number", "email"]
     list_per_page = 25
 
-    
+
+@admin.register(Setting)
+class SettingAdmin(admin.ModelAdmin):
+    list_display = ["name", "address", "city", "phone_number", "email"]
+    list_filter = ["city"]
+    search_fields = ["name", "city", "phone_number", "email"]
+    list_per_page = 25
