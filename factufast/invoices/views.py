@@ -1,16 +1,21 @@
 # import login_required decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.shortcuts import render
-
 from django.http import HttpResponseRedirect
-
-from factufast.invoices.models import Client, Product
-from factufast.invoices.forms import ClientForm, ProductForm
-# Create your views here.
-
+from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
+
+from factufast.invoices.forms import ClientForm, ProductForm
+from factufast.invoices.models import Client, Product
+
+# Create your views here.
 
 
 @login_required
@@ -21,38 +26,42 @@ def dashboard(request):
 
 # Client views
 
+
 class ClientListView(LoginRequiredMixin, ListView):
     template_name = "invoices/client/list.html"
     model = Client
     context_object_name = "clients"
-    ordering = ('-date_created',)
+    ordering = ("-date_created",)
     paginate_by = 30
 
 
 # Client Detail View
 
+
 class ClientDetailView(LoginRequiredMixin, DetailView):
     template_name = "invoices/client/detail.html"
     queryset = Client.objects.all()
     context_object_name = "client"
-    
+
 
 # Client Create View
 
+
 class ClientCreateView(LoginRequiredMixin, CreateView):
-    
     def get(self, request, *args, **kwargs):
         form = ClientForm()
-        return render(request, 'invoices/client/create.html', {'form': form})
+        return render(request, "invoices/client/create.html", {"form": form})
 
     def post(self, request, *args, **kwargs):
         form = ClientForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse_lazy('invoices:clients'))
-        return render(request, 'invoices/client/create.html', {'form': form})
+            return HttpResponseRedirect(reverse_lazy("invoices:clients"))
+        return render(request, "invoices/client/create.html", {"form": form})
+
 
 # Client Update View
+
 
 class ClientUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "invoices/client/update.html"
@@ -72,22 +81,26 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
 
 # Product Views
 
+
 class ProductListView(LoginRequiredMixin, ListView):
     template_name = "invoices/product/list.html"
     model = Product
     context_object_name = "products"
-    ordering = ('-date_created',)
+    ordering = ("-date_created",)
     paginate_by = 30
 
 
 # Product Detail View
+
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
     template_name = "invoices/product/detail.html"
     queryset = Product.objects.all()
     context_object_name = "product"
 
+
 # Product Create View
+
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
     template_name = "invoices/product/create.html"
@@ -100,7 +113,9 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy("invoices:products")
 
+
 # Product Update View
+
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "invoices/product/update.html"
@@ -117,7 +132,9 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy("invoices:products")
 
+
 # Product Delete View
+
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "invoices/product/delete.html"

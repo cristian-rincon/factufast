@@ -2,9 +2,9 @@
 
 {% block content %}
 
- 
+
 <h1 class="my-5 pt-5">Products list</h1>
-  
+
 
 
 
@@ -34,7 +34,7 @@
         <td>{{product.currency}}</td>
         <td>
           <a class="btn btn-primary btn-sm rounded-circle" href="{% url 'invoices:update_product' slug=product.slug %}"><i class="bi bi-pencil-square"></i></a>
-          
+
         </td>
       </tr>
       {% endfor %}

@@ -1,8 +1,6 @@
 from django import forms
-from factufast.invoices.models import Invoice, Product, Client
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Row
 
+from factufast.invoices.models import Client, Invoice, Product
 
 
 class InvoiceForm(forms.ModelForm):
@@ -39,5 +37,3 @@ class ClientForm(forms.ModelForm):
             "email",
             "tax_number",
         ]
-  
-

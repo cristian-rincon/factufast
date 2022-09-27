@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Invoice, Product, Client, Setting
+from .models import Client, Invoice, Product, Setting
 
 # Register your models here.
 

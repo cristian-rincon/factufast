@@ -7,6 +7,7 @@ from django.utils import timezone
 
 # Create your models here.
 
+
 class Client(models.Model):
 
     COLOMBIA_CITIES = (
@@ -51,7 +52,7 @@ class Client(models.Model):
 
         self.slug = slugify(f"{self.name}-{self.unique_id}-{self.city}")
         self.date_updated = timezone.localtime(timezone.now())
-        super(Client, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class Setting(models.Model):
@@ -98,7 +99,7 @@ class Setting(models.Model):
 
         self.slug = slugify(f"{self.name}-{self.unique_id}-{self.city}")
         self.date_updated = timezone.localtime(timezone.now())
-        super(Setting, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class Product(models.Model):
@@ -139,7 +140,7 @@ class Product(models.Model):
 
         self.slug = slugify(f"{self.title}-{self.unique_id}")
         self.date_updated = timezone.localtime(timezone.now())
-        super(Product, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class Invoice(models.Model):
@@ -204,6 +205,4 @@ class Invoice(models.Model):
 
         self.slug = slugify(f"{self.title}-{self.unique_id}")
         self.date_updated = timezone.localtime(timezone.now())
-        super(Invoice, self).save(*args, **kwargs)
-
-
+        super().save(*args, **kwargs)
