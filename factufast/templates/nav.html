@@ -1,0 +1,66 @@
+{% load static %}
+{% load static i18n compress%}
+{% get_current_language as LANGUAGE_CODE %}
+
+<div class="mb-1">
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'home' %}">Factufast</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+
+            
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            </li>
+
+            <li class="nav-item">
+              
+              <a class="nav-link" href="#"><i class="bi bi-table"></i> Invoices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'invoices:clients' %}"><i class="bi bi-people-fill"></i> Clients</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="bi bi-layers-half"></i> {% translate "Products / Services" %}</a>
+            </li>
+
+            {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown pe-4">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> {% translate "Account" %}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {# URL provided by django-allauth/account/urls.py #}
+                <li><a class="dropdown-item" href="{% url 'users:detail' request.user.username  %}">{% translate "Profile" %}</a></li>
+                {# URL provided by django-allauth/account/urls.py #}
+                <li><a class="dropdown-item" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a></li>
+              </ul>
+            </li>
+          {% else %}
+            {% if ACCOUNT_ALLOW_REGISTRATION %}
+          <li class="nav-item">
+            {# URL provided by django-allauth/account/urls.py #}
+            <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>
+          </li>
+          {% endif %}
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
+            </li>
+          {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>

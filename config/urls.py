@@ -36,6 +36,11 @@ urlpatterns += [
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
     ),
+    # INVOICES APP
+    path(
+        r"invoices/",
+        include(("factufast.invoices.urls", "invoices"), namespace="invoices"),
+    ),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,75 @@
+<h1>Client Detail</h1>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <img src="{{ MEDIA_URL }}/client_logos/{{ client.logo }}" alt="" srcset="" style="max-width: 100%;">
+
+            </div>
+            <div class="col-sm-12 col-md-8 position-relative">
+
+                <a href="#" class="btn btn-primary rounded-circle position-absolute top-0 end-0"><i
+                        class="bi bi-pencil-square"></i></a>
+                <h5 class="card-title">Basic Info </h5>
+
+
+                <table class="table table-hover  table-borderless">
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">Client Name</th>
+                            <td>{{client.name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <td>{{client.email}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Phone Number</th>
+                            <td>{{client.phone_number}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Address</th>
+                            <td>{{client.address}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">City</th>
+                            <td>{{client.city}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Postal Code</th>
+                            <td>{{client.postal_code}}</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Tax Number
+                            </th>
+                            <td>
+                                {{client.tax_number}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Date Created
+                            </th>
+                            <td>
+                                {{client.date_created}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Last Updated
+                            </th>
+                            <td>
+                                {{client.date_updated}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
