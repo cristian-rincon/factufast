@@ -1,0 +1,64 @@
+<h1>Product Detail</h1>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <img src="{{ MEDIA_URL }}/client_logos/{{ client.logo }}" alt="" srcset="" style="max-width: 100%;">
+
+            </div>
+            <div class="col-sm-12 col-md-8 position-relative">
+
+                <a href="#" class="btn btn-primary rounded-circle position-absolute top-0 end-0"><i
+                        class="bi bi-pencil-square"></i></a>
+                <h5 class="card-title">Basic Info </h5>
+
+
+                <table class="table table-hover  table-borderless">
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">Product Title</th>
+                            <td>{{product.title}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>{{product.description}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Quantity</th>
+                            <td>{{product.quantity}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>{{product.price}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Currency</th>
+                            <td>{{product.currency}}</td>
+                        </tr>
+                    
+                        <tr>
+                            <th>
+                                Date Created
+                            </th>
+                            <td>
+                                {{product.date_created}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Last Updated
+                            </th>
+                            <td>
+                                {{product.date_updated}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,8 +6,8 @@ from django.shortcuts import render
 
 from django.http import HttpResponseRedirect
 
-from factufast.invoices.models import Client
-from factufast.invoices.forms import ClientForm
+from factufast.invoices.models import Client, Product
+from factufast.invoices.forms import ClientForm, ProductForm
 # Create your views here.
 
 from django.urls import reverse_lazy
@@ -68,3 +68,65 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("invoices:clients")
+
+
+# Product Views
+
+class ProductListView(LoginRequiredMixin, ListView):
+    template_name = "invoices/product/list.html"
+    model = Product
+    context_object_name = "products"
+    ordering = ('-date_created',)
+    paginate_by = 30
+
+
+# Product Detail View
+
+class ProductDetailView(LoginRequiredMixin, DetailView):
+    template_name = "invoices/product/detail.html"
+    queryset = Product.objects.all()
+    context_object_name = "product"
+
+# Product Create View
+
+class ProductCreateView(LoginRequiredMixin, CreateView):
+    template_name = "invoices/product/create.html"
+    queryset = Product.objects.all()
+    form_class = ProductForm
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy("invoices:products")
+
+# Product Update View
+
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = "invoices/product/update.html"
+    queryset = Product.objects.all()
+    form_class = ProductForm
+
+    def get_object(self):
+        slug = self.kwargs.get("slug")
+        return Product.objects.get(slug=slug)
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy("invoices:products")
+
+# Product Delete View
+
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    template_name = "invoices/product/delete.html"
+    queryset = Product.objects.all()
+    form_class = ProductForm
+
+    def get_object(self):
+        slug = self.kwargs.get("slug")
+        return Product.objects.get(slug=slug)
+
+    def get_success_url(self):
+        return reverse_lazy("invoices:products")

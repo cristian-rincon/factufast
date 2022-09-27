@@ -31,7 +31,7 @@
               <a class="nav-link" href="{% url 'invoices:clients' %}"><i class="bi bi-people-fill"></i> Clients</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="bi bi-layers-half"></i> {% translate "Products / Services" %}</a>
+              <a class="nav-link" href="{% url 'invoices:products' %}"><i class="bi bi-layers-half"></i> {% translate "Products / Services" %}</a>
             </li>
 
             {% if request.user.is_authenticated %}
