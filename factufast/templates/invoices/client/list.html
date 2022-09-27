@@ -8,70 +8,72 @@
 
 
 
+<div class="container">
 
+  {% if clients|length > 0 %}
+  <div class="table-responsive">
+    <table class="table table-hover table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Client Name</th>
+          <th scope="col">Email Address</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Address Line</th>
+          <th scope="col">City</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
 
-{% if clients|length > 0 %}
-<div class="table-responsive">
-  <table class="table table-hover table-sm">
-    <thead>
-      <tr>
-        <th scope="col">Client Name</th>
-        <th scope="col">Email Address</th>
-        <th scope="col">Phone Number</th>
-        <th scope="col">Address Line</th>
-        <th scope="col">City</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
+        {% for client in clients %}
+        <tr>
+          <td> <a href="{% url 'invoices:client_detail' slug=client.slug %}">{{client.name}}</a></td>
+          <td>{{client.email}}</td>
+          <td>{{client.phone_number}}</td>
+          <td>{{client.address}}</td>
+          <td>{{client.city}}</td>
+          <td>
+            <a class="btn btn-primary btn-sm rounded-circle" href="{% url 'invoices:update_client' slug=client.slug %}"><i
+                class="bi bi-pencil-square"></i></a>
 
-      {% for client in clients %}
-      <tr>
-        <td> <a href="{% url 'invoices:client_detail' slug=client.slug %}">{{client.name}}</a></td>
-        <td>{{client.email}}</td>
-        <td>{{client.phone_number}}</td>
-        <td>{{client.address}}</td>
-        <td>{{client.city}}</td>
-        <td>
-          <a class="btn btn-primary btn-sm rounded-circle" href="{% url 'invoices:update_client' slug=client.slug %}"><i
-              class="bi bi-pencil-square"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
 
-        </td>
-      </tr>
-      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="row">
+    <div class="col-lg-2">
 
-    </tbody>
-  </table>
+    </div>
+    <div class="col-lg-8">
+      <h3>Add First Client</h3>
+      <img src="" alt="">
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-8 text-center">
+      <img src="{{ MEDIA_URL }}/placeholders/undraw_No_data_re_kwbl.png" alt="" srcset="" style="max-width: 50%;">
+      <h3>Add the First Client</h3>
+      <a class="btn" href="{% url 'invoices:create_client' %}"><i class="bi bi-plus-circle-fill text-primary" style="font-size: 3.5rem;"></i></a>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+  </div>
+  {% endif %}
+
+  <a class="btn btn-lg" href="{% url 'invoices:create_client' %}"><i class="bi bi-plus-circle-fill text-primary" style="font-size: 1.5rem;"></i></a>
 </div>
-{% else %}
-<div class="row">
-  <div class="col-lg-2">
 
-  </div>
-  <div class="col-lg-8">
-    <h3>Add First Client</h3>
-    <img src="" alt="">
-  </div>
-  <div class="col-lg-3">
-
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-lg-2">
-
-  </div>
-  <div class="col-lg-8 text-center">
-    <img src="{{ MEDIA_URL }}/placeholders/undraw_No_data_re_kwbl.png" alt="" srcset="" style="max-width: 50%;">
-    <h3>Add the First Client</h3>
-    <a class="btn" href="{% url 'invoices:create_client' %}"><i class="bi bi-plus-circle-fill text-primary" style="font-size: 3.5rem;"></i></a>
-  </div>
-  <div class="col-lg-3">
-
-  </div>
-</div>
-{% endif %}
-
-<a class="btn btn-lg" href="{% url 'invoices:create_client' %}"><i class="bi bi-plus-circle-fill text-primary" style="font-size: 1.5rem;"></i></a>
 
 {% endblock content %}
