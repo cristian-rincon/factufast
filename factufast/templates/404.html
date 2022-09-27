@@ -3,7 +3,12 @@
 {% block title %}Page not found{% endblock %}
 
 {% block content %}
-<h1>Page not found</h1>
+<div class="container text-center">
+    <img src="{{MEDIA_URL}}/placeholders/undraw_Page_not_found_re_e9o6.png" alt="404" class="img-fluid">
 
-<p>{% if exception %}{{ exception }}{% else %}This is not the page you were looking for.{% endif %}</p>
+    <p>{% if exception %}{{ exception }}{% else %}This is not the page you were looking for.{% endif %}</p>
+</div>
+
+
+
 {% endblock content %}

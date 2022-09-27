@@ -3,9 +3,14 @@
 {% block title %}Server Error{% endblock %}
 
 {% block content %}
-<h1>Ooops!!! 500</h1>
+<h1 class="my-5 pt-5">Ooops!!! 500</h1>
 
 <h3>Looks like something went wrong!</h3>
 
-<p>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing.</p>
+<div class="container text-center">
+    <img src="{{MEDIA_URL}}/placeholders/undraw_server_down_s4lk.png" alt="500" class="img-fluid">
+    <p>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing.</p>
+
+</div>
+
 {% endblock content %}
