@@ -1,5 +1,66 @@
 {% extends "base.html" %}
 
 {% block content %}
-home
+
+<div class="row flex-lg-row-reverse align-items-center g-5 py-5 m-3">
+    <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{MEDIA_URL}}//placeholders/undraw_printing_invoices_5r4r.png" alt=""
+            class="d-block mx-lg-auto img-fluid">
+    </div>
+    <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Factufast</h1>
+        <p class="lead">Factufast is a free and open source invoicing software. It is designed to be easy to use and to
+            be self-hosted.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-4 me-md-2">Sign up</a>
+            <a href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-lg px-4">Sign in</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Features banner -->
+
+<div class="bg-light p-5 rounded-lg m-3">
+    <div class=" py-5">
+        <h1 class="display-5 fw-bold">Features</h1>
+        <p class="col-md-8 fs-4">Factufast is a free and open source invoicing software. It is designed to be easy to use
+            and to be self-hosted.</p>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Easy to use</h5>
+                        <p class="card-text">Factufast is designed to be easy to use. It is a web application that can be
+                            used from any device.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Self-hosted</h5>
+                        <p class="card-text">Factufast is a self-hosted application. You can install it on your own server
+                            and you can access it from anywhere.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Open source</h5>
+                        <p class="card-text">Factufast is an open source project. You can contribute to the project or
+                            install it on your own server.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
 {% endblock content %}
