@@ -3,12 +3,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-12 col-md-4">
-                <img src="{{ MEDIA_URL }}/client_logos/{{ client.logo }}" alt="" srcset="" style="max-width: 100%;">
+                <img src="{{ MEDIA_URL }}product_logos/{{ product.logo }}" alt="" srcset="" style="max-width: 100%;">
 
             </div>
             <div class="col-sm-12 col-md-8 position-relative">
 
-                <a href="#" class="btn btn-primary rounded-circle position-absolute top-0 end-0"><i
+                <a href="{% url 'invoices:update_product' slug=product.slug %}" class="btn btn-primary rounded-circle position-absolute top-0 end-0"><i
                         class="bi bi-pencil-square"></i></a>
                 <h5 class="card-title">Basic Info </h5>
 
