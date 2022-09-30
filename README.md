@@ -1,15 +1,6 @@
-# Create an Invoicing Application with Python and Bootstrap5
+# Factufast
 
-This is the final Instalment in the Invoice App development journey. There are two more instalments in this tuturial series. The videos are all available on youtube.
-
-### Part 1 - Creating an Invoice App
-[Create Invoice App with Django and Bootsrap5 - Part 1](https://www.youtube.com/watch?v=9XE0sf0XYuw)
-
-### Part 2 - Creating an Invoice App
-[Create Invoice App with Django and Bootsrap5 - Part 2](https://www.youtube.com/watch?v=5FILKEYu54M)
-
-### Part 3 - Creating an Invoice App
-[Create Invoice App with Django and Bootsrap5 - Part 3](https://www.youtube.com/watch?v=KU_taqbG00U)
+Simple invoice service
 
 ## Install dependencies
 
@@ -28,4 +19,16 @@ sudo apt install wkhtmltopdf
 
 ```bash
 poetry run python manage.py runserver
+```
+
+## Run migrations
+
+```bash
+poetry run python manage.py migrate
+```
+
+## Create super user
+
+```bash
+poetry run python manage.py createsuperuser
 ```
