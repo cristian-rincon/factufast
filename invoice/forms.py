@@ -1,13 +1,10 @@
-import json
-
 # Form Layout from Crispy Forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Column, Layout, Row, Submit
 from django import forms
 from django.contrib.auth.models import User
-from django.forms import widgets
 
-from .models import *
+from .models import Client, Invoice, Product, Settings
 
 
 class DateInput(forms.DateInput):
@@ -149,7 +146,7 @@ class ClientSelectForm(forms.ModelForm):
             d_t = (client.uniqueId, client.clientName)
             self.CLIENT_CHOICES.append(d_t)
 
-        super(ClientSelectForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.fields["client"] = forms.ChoiceField(
             label="Cliente",

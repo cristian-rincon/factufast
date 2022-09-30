@@ -1,12 +1,11 @@
 import os
-from random import randint
 from uuid import uuid4
 
 import pdfkit
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import auth
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.loader import get_template
@@ -126,9 +125,6 @@ def logout(request):
     return redirect("login")
 
 
-###--------------------------- Create Invoice Views Start here --------------------------------------------- ###
-
-
 @login_required
 def createInvoice(request):
     # create a blank invoice ....
@@ -144,8 +140,7 @@ def createBuildInvoice(request, slug):
     # fetch that invoice
     try:
         invoice = Invoice.objects.get(slug=slug)
-        pass
-    except:
+    except Exception:
         messages.error(request, "Something went wrong")
         return redirect("invoices")
 
@@ -203,8 +198,7 @@ def viewPDFInvoice(request, slug):
     # fetch that invoice
     try:
         invoice = Invoice.objects.get(slug=slug)
-        pass
-    except:
+    except Exception:
         messages.error(request, "Something went wrong")
         return redirect("invoices")
 
@@ -227,7 +221,7 @@ def viewPDFInvoice(request, slug):
     context["invoice"] = invoice
     context["products"] = products
     context["p_settings"] = p_settings
-    context["invoiceTotal"] = "{:.2f}".format(invoiceTotal)
+    context["invoiceTotal"] = f"{invoiceTotal:.2f}"
     context["invoiceCurrency"] = invoiceCurrency
 
     return render(request, "invoice/invoice-template.html", context)
@@ -237,8 +231,7 @@ def viewDocumentInvoice(request, slug):
     # fetch that invoice
     try:
         invoice = Invoice.objects.get(slug=slug)
-        pass
-    except:
+    except Exception:
         messages.error(request, "Something went wrong")
         return redirect("invoices")
 
@@ -259,10 +252,10 @@ def viewDocumentInvoice(request, slug):
     context["invoice"] = invoice
     context["products"] = products
     context["p_settings"] = p_settings
-    context["invoiceTotal"] = "{:.2f}".format(invoiceTotal)
+    context["invoiceTotal"] = f"{invoiceTotal:.2f}"
 
     # The name of your PDF file
-    filename = "{}.pdf".format(invoice.uniqueId)
+    filename = f"{invoice.uniqueId}.pdf"
 
     # HTML FIle to be converted to PDF - inside your Django directory
     template = get_template("invoice/pdf-template.html")
@@ -284,8 +277,8 @@ def viewDocumentInvoice(request, slug):
     config = pdfkit.configuration(wkhtmltopdf="/usr/bin/wkhtmltopdf")
 
     # IF you have CSS to add to template
-    css1 = os.path.join(settings.CSS_LOCATION, "assets", "css", "bootstrap.min.css")
-    css2 = os.path.join(settings.CSS_LOCATION, "assets", "css", "dashboard.css")
+    # css1 = os.path.join(settings.CSS_LOCATION, "assets", "css", "bootstrap.min.css")
+    # css2 = os.path.join(settings.CSS_LOCATION, "assets", "css", "dashboard.css")
 
     # Create the file
     file_content = pdfkit.from_string(
@@ -294,7 +287,7 @@ def viewDocumentInvoice(request, slug):
 
     # Create the HTTP Response
     response = HttpResponse(file_content, content_type="application/pdf")
-    response["Content-Disposition"] = "inline; filename = {}".format(filename)
+    response["Content-Disposition"] = f"inline; filename = {filename}"
 
     # Return
     return response
@@ -304,8 +297,7 @@ def emailDocumentInvoice(request, slug):
     # fetch that invoice
     try:
         invoice = Invoice.objects.get(slug=slug)
-        pass
-    except:
+    except Exception:
         messages.error(request, "Something went wrong")
         return redirect("invoices")
 
@@ -326,10 +318,10 @@ def emailDocumentInvoice(request, slug):
     context["invoice"] = invoice
     context["products"] = products
     context["p_settings"] = p_settings
-    context["invoiceTotal"] = "{:.2f}".format(invoiceTotal)
+    context["invoiceTotal"] = f"{invoiceTotal:.2f}"
 
     # The name of your PDF file
-    filename = "{}.pdf".format(invoice.uniqueId)
+    filename = f"{invoice.uniqueId}.pdf"
 
     # HTML FIle to be converted to PDF - inside your Django directory
     template = get_template("invoice/pdf-template.html")
@@ -374,7 +366,7 @@ def emailDocumentInvoice(request, slug):
 def deleteInvoice(request, slug):
     try:
         Invoice.objects.get(slug=slug).delete()
-    except:
+    except Exception:
         messages.error(request, "Something went wrong")
         return redirect("invoices")
 

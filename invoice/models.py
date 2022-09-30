@@ -1,8 +1,8 @@
 from uuid import uuid4
 
-from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -34,7 +34,7 @@ class Client(models.Model):
     last_updated = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return "{} {} {}".format(self.clientName, self.department, self.uniqueId)
+        return f"{self.clientName} {self.department} {self.uniqueId}"
 
     def get_absolute_url(self):
         return reverse("client-detail", kwargs={"slug": self.slug})
@@ -44,16 +44,12 @@ class Client(models.Model):
             self.date_created = timezone.localtime(timezone.now())
         if self.uniqueId is None:
             self.uniqueId = str(uuid4()).split("-")[4]
-            self.slug = slugify(
-                "{} {} {}".format(self.clientName, self.department, self.uniqueId)
-            )
+            self.slug = slugify(f"{self.clientName} {self.department} {self.uniqueId}")
 
-        self.slug = slugify(
-            "{} {} {}".format(self.clientName, self.department, self.uniqueId)
-        )
+        self.slug = slugify(f"{self.clientName} {self.department} {self.uniqueId}")
         self.last_updated = timezone.localtime(timezone.now())
 
-        super(Client, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class Invoice(models.Model):
@@ -66,7 +62,7 @@ class Invoice(models.Model):
     ]
 
     STATUS = [
-            ("Borrador", "Borrador"),
+        ("Borrador", "Borrador"),
         ("Enviado", "Enviado"),
         ("Pagado", "Pagado"),
         ("Cancelado", "Cancelado"),
@@ -90,7 +86,7 @@ class Invoice(models.Model):
     last_updated = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return "{} {}".format(self.number, self.uniqueId)
+        return f"{self.number} {self.uniqueId}"
 
     def get_absolute_url(self):
         return reverse("invoice-detail", kwargs={"slug": self.slug})
@@ -100,12 +96,12 @@ class Invoice(models.Model):
             self.date_created = timezone.localtime(timezone.now())
         if self.uniqueId is None:
             self.uniqueId = str(uuid4()).split("-")[4]
-            self.slug = slugify("{} {}".format(self.number, self.uniqueId))
+            self.slug = slugify(f"{self.number} {self.uniqueId}")
 
-        self.slug = slugify("{} {}".format(self.number, self.uniqueId))
+        self.slug = slugify(f"{self.number} {self.uniqueId}")
         self.last_updated = timezone.localtime(timezone.now())
 
-        super(Invoice, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class Product(models.Model):
@@ -132,7 +128,7 @@ class Product(models.Model):
     last_updated = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return "{} {}".format(self.title, self.uniqueId)
+        return f"{self.title} {self.uniqueId}"
 
     def get_absolute_url(self):
         return reverse("product-detail", kwargs={"slug": self.slug})
@@ -142,12 +138,12 @@ class Product(models.Model):
             self.date_created = timezone.localtime(timezone.now())
         if self.uniqueId is None:
             self.uniqueId = str(uuid4()).split("-")[4]
-            self.slug = slugify("{} {}".format(self.title, self.uniqueId))
+            self.slug = slugify(f"{self.title} {self.uniqueId}")
 
-        self.slug = slugify("{} {}".format(self.title, self.uniqueId))
+        self.slug = slugify(f"{self.title} {self.uniqueId}")
         self.last_updated = timezone.localtime(timezone.now())
 
-        super(Product, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class Settings(models.Model):
@@ -177,7 +173,7 @@ class Settings(models.Model):
     last_updated = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return "{} {} {}".format(self.clientName, self.department, self.uniqueId)
+        return f"{self.clientName} {self.department} {self.uniqueId}"
 
     def get_absolute_url(self):
         return reverse("settings-detail", kwargs={"slug": self.slug})
@@ -187,13 +183,9 @@ class Settings(models.Model):
             self.date_created = timezone.localtime(timezone.now())
         if self.uniqueId is None:
             self.uniqueId = str(uuid4()).split("-")[4]
-            self.slug = slugify(
-                "{} {} {}".format(self.clientName, self.department, self.uniqueId)
-            )
+            self.slug = slugify(f"{self.clientName} {self.department} {self.uniqueId}")
 
-        self.slug = slugify(
-            "{} {} {}".format(self.clientName, self.department, self.uniqueId)
-        )
+        self.slug = slugify(f"{self.clientName} {self.department} {self.uniqueId}")
         self.last_updated = timezone.localtime(timezone.now())
 
-        super(Settings, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
