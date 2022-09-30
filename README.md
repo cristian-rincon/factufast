@@ -20,3 +20,15 @@ sudo apt install wkhtmltopdf
 ```bash
 poetry run python manage.py runserver
 ```
+
+## Run migrations
+
+```bash
+poetry run python manage.py migrate
+```
+
+## Create super user
+
+```bash
+poetry run python manage.py createsuperuser
+```
